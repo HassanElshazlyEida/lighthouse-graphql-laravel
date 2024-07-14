@@ -36,3 +36,11 @@ type Comment {
     reply: String!
     post: Post! @belongsTo
 }
+type Mutation {
+    createUser(
+        name: String! @rules(apply: ["required", "max:255","min:3"]),
+        email: String! @rules(apply: ["required", "email", "unique:users,email"])
+        password: String! @rules(apply: ["required", "min:6"]) @hash 
+
+    ): User! @create
+}
