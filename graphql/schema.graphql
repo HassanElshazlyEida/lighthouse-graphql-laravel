@@ -8,11 +8,22 @@ scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date
 scalar DateTimeTz @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTimeTz")
 
 type Query {
-    users: [User!]! @paginate(defaultCount: 10)
+    users: [User!]! @paginate(defaultCount: 50)
     user(id: ID @eq): User @find
+
     posts: [Post!]! @all
     post(id: Int! @eq): Post @find,
     latestPost: Post!
+
+    books: [Book] @all
+    book(id: ID @eq): Book! @find
+
+    categories: [Category] @all
+    category(id: ID @eq): Category! @find
+
+    booksByCategory(category_id: ID @eq): [Book] @all
+    booksByFeatured(featured: Boolean @eq): [Book] @all
+    booksByAuthorName(author: String @eq): [Book] @all
 }
 type User {
     id: ID!
@@ -30,7 +41,24 @@ type Post {
     author: User! @belongsTo
     comments: [Comment!]! @hasMany
 }
+type Book {
+    id: ID!,
+    title: String!,
+    author: String!,
+    image: String,
+    link: String,
+    description: String,
+    featured: Boolean,
+    category: Category! @belongsTo
 
+    
+}
+type Category {
+    id: ID!,
+    name: String!,
+    books: [Book] @hasMany
+
+}
 type Comment {
     id: ID!
     reply: String!
