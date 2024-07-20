@@ -71,4 +71,44 @@ type Mutation {
         password: String! @rules(apply: ["required", "min:6"]) @hash 
 
     ): User! @create
+
+    createCategory(
+        name: String! @rules(apply: ["required", "max:255","min:3","unique:categories,name"])
+    ): Category! @create
+
+    updateCategory(
+        id: ID! @rules(apply: ["required"]),
+        name: String! @rules(apply: ["required", "max:255","min:3","unique:categories,name"])
+    ): Category! @update
+
+    deleteCategory(
+        id: ID! @rules(apply: ["required"])
+    ): Category! @delete
+
+    createBook(
+        title: String! @rules(apply: ["required", "max:255","min:3"]),
+        author: String! @rules(apply: ["required", "max:255","min:3"]),
+        image: String,
+        link: String,
+        description: String,
+        featured: Boolean,
+        category: Int
+
+    ): Book! @create
+
+    updateBook(
+        id: ID! @rules(apply: ["required"]),
+        title: String! @rules(apply: ["required", "max:255","min:3"]),
+        author: String! @rules(apply: ["required", "max:255","min:3"]),
+        image: String,
+        link: String,
+        description: String,
+        featured: Boolean,
+        category: Int
+    ): Book! @update
+
+    deleteBook(
+        id: ID! @rules(apply: ["required"])
+    ): Book! @delete
+
 }
