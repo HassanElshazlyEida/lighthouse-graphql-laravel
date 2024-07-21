@@ -2,6 +2,8 @@ import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 import { apolloProvider } from './apollo'; // Import the Apollo provider
+import VueApolloComponents from '@vue/apollo-components'
+import './assets/main.css';
 
 const pages = import.meta.glob('./Pages/**/*.vue');
 
@@ -17,6 +19,8 @@ createInertiaApp({
     createApp({ render: () => h(App, props) })
       .use(plugin)
       .use(apolloProvider) 
+      .use(VueApolloComponents)
+
       .mount(el);
   },
 });
