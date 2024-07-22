@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return Inertia::render('Welcome');
 });
-Route::get('/test', function () {
-    return Inertia::render('test');
-});
+Route::get('/books/create', function () {
+    dd(2);
+ })->name('books.create');
+Route::get('/books/{id}', function () {
+   dd(1);
+})->name('books.show');

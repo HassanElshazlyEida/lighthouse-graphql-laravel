@@ -17,7 +17,7 @@
       </div> <!-- end hero -->
   
       <div class="container">
-        <div class="flex flex-wrap -mx-4">
+        <div class="flex  -mx-4">
           <div class="w-full lg:w-1/4 px-4 mb-12">
             <ApolloQuery :query="categoriesQuery">
               <template v-slot="{ result: { loading,error,data }, isLoading }">
@@ -33,20 +33,20 @@
                     <a href="#" class="text-black hover:text-grey-darkest" @click.prevent="selectCategory(category.id)">{{ category.name }}</a>
                   </li>
                   <li class="mb-6">
-                    <router-link to="/books/add" class="text-black hover:text-grey-darkest">Add a book</router-link>
+                    <Link href="/books/create" class="text-black hover:text-grey-darkest">Add a book</Link>
                   </li>
   
                 </ul>
               </template>
             </ApolloQuery>
           </div>
-          <div class="w-full lg:w-3/4 px-4 mb-12">
+          <div class="w-full  px-4 mb-12">
             <div>
               <ApolloQuery :query="query" v-if="selectedCategory === 'all'">
                 <template v-slot="{ result: { loading,error,data }, isLoading }">
                   <div v-if="isLoading">Loading...</div>
-                  <div v-else class="flex flex-wrap">
-                    <div v-for="book of books" :key="book.id" class="w-full lg:w-1/3 px-4 mb-12">
+                  <div v-else class="grid grid-cols-3 gap-3">
+                    <div v-for="book of data.books" :key="book.id" class="w-full lg:w-1/3 px-4 mb-12">
                       <book-listing :book="book"></book-listing>
                     </div>
                   </div>
@@ -56,7 +56,7 @@
               <ApolloQuery :query="query" :variables="{ featured: true }" v-else-if="selectedCategory === 'featured'">
                 <template v-slot="{ result: { loading,error,data }, isLoading }">
                   <div v-if="isLoading">Loading...</div>
-                  <div v-else class="flex flex-wrap">
+                  <div v-else class="grid grid-cols-3 gap-3">
                     <div v-for="book of data.booksByFeatured" :key="book.id" class="w-full lg:w-1/3 px-4 mb-12">
                       <book-listing :book="book"></book-listing>
                     </div>
@@ -67,7 +67,7 @@
               <ApolloQuery :query="query" :variables="{ id: selectedCategory }" v-else>
                 <template v-slot="{ result: { loading,error,data }, isLoading }">
                   <div v-if="isLoading">Loading...</div>
-                  <div v-else class="flex flex-wrap">
+                  <div v-else class="grid grid-cols-3 gap-3">
                     <div v-for="book of data.category.books" :key="book.id" class="w-full lg:w-1/3 px-4 mb-12">
                       <book-listing :book="book"></book-listing>
                     </div>
@@ -91,6 +91,7 @@
   import booksQuery from './graphql/queries/Books.gql'
   import booksFeaturedQuery from './graphql/queries/BooksFeatured.gql'
   import bookListing from '../components/BookListing.vue'
+  import { Link } from '@inertiajs/inertia-vue3'
 
 
 
@@ -99,7 +100,8 @@
   export default {
     name: 'home',
     components: {
-        bookListing
+        bookListing,
+        Link
     },
     data() {
       return {
