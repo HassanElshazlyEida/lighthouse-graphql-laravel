@@ -5,7 +5,7 @@ mutation(
   $link: String
   $description: String
   $featured: Boolean
-  $category: Int!
+  $category_id: Int!
 ) {
   createBook(
     title: $title
@@ -14,7 +14,7 @@ mutation(
     link: $link
     description: $description
     featured: $featured
-    category: $category
+    category_id: $category_id
   ) {
     id
     title

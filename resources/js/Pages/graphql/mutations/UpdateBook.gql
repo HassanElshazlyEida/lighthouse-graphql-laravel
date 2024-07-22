@@ -6,7 +6,7 @@ mutation(
   $link: String
   $description: String
   $featured: Boolean
-  $category: Int!
+  $category_id: Int!
 ) {
   updateBook(
     id: $id
@@ -16,7 +16,7 @@ mutation(
     link: $link
     description: $description
     featured: $featured
-    category: $category
+    category_id: $category
   ) {
     id
     title

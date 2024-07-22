@@ -47,7 +47,8 @@
   </template>
   <script>
   import categoriesQuery from './graphql/queries/Categories.gql'
-  
+  import AddBook from './graphql/mutations/AddBook.gql'
+
   export default {
     
     data() {
@@ -64,7 +65,24 @@
     },
     methods: {
       submitBook() {
-       
+        this.$apollo.mutate({
+            mutation: AddBook,
+            variables: {
+                title: this.title,
+                author: this.author,
+                image: this.image,
+                description: this.description,
+                link: this.link,
+                featured: this.featured,
+                category_id: this.category
+
+            }
+        }).then((data) => {
+            console.log(data)
+            this.$inertia.visit("/");
+        }).catch((error) => {
+            console.error(error)
+        })
       }
     }
   }
