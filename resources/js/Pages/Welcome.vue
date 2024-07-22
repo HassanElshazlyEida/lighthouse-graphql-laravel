@@ -90,7 +90,7 @@
   import categoriesQuery from './graphql/queries/Categories.gql'
   import booksQuery from './graphql/queries/Books.gql'
   import booksFeaturedQuery from './graphql/queries/BooksFeatured.gql'
-  import BookListing from '../components/BookListing.vue'
+  import bookListing from '../components/BookListing.vue'
 
 
 
@@ -99,7 +99,7 @@
   export default {
     name: 'home',
     components: {
-     
+        bookListing
     },
     data() {
       return {
