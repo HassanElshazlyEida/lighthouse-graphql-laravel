@@ -18,8 +18,8 @@ Route::get('/', function () {
     return Inertia::render('Welcome');
 });
 Route::get('/books/create', function () {
-    dd(2);
+    return Inertia::render('AddBook');
  })->name('books.create');
-Route::get('/books/{id}', function () {
-   dd(1);
+Route::get('/books/{id}', function ($id) {
+    return Inertia::render('Book', ['bookId' => $id]);
 })->name('books.show');

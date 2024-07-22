@@ -1,6 +1,8 @@
-export default {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  },
+var tailwindcss = require('tailwindcss');
+
+module.exports = {
+  plugins: [
+    tailwindcss('./tailwind.js'),
+    require('autoprefixer'),
+  ]
 }
