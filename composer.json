@@ -13,7 +13,8 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "mll-lab/laravel-graphql-playground": "^2.5",
-        "nuwave/lighthouse": "^5.26"
+        "nuwave/lighthouse": "^5.26",
+        "softonic/graphql-client": "^3.0"
     },
     "require-dev": {
         "spatie/laravel-ignition": "^1.0",
